@@ -1,9 +1,3 @@
-/*
- * Laboratorio — Listado de personas
- * Archivo: src/configurations/database.js
- * Tu tarea (paso 4): conectar Mongoose con la URI del archivo .env.
- * Guía: README.md
- */
 
 const mongoose = require("mongoose");
 
@@ -11,17 +5,15 @@ async function conectarBaseDeDatos() {
   const uri = process.env.MONGODB_URI;
 
   if (!uri) {
-    throw new Error(
-      "Falta MONGODB_URI. En .env pega la URL de MongoDB Atlas, la que empieza por mongodb+srv:// (paso 2)."
-    );
+    throw new Error("No se encontró la variable MONGODB_URI");
   }
 
-  // TODO (paso 4): conecta con mongoose.connect(uri).
-  // Luego imprime en consola el nombre de la base: mongoose.connection.name
-  // Borra el throw cuando la conexión esté escrita.
-  throw new Error(
-    "TODO pendiente (paso 4): en src/configurations/database.js llama a mongoose.connect(uri) y elimina este throw."
-  );
+  await mongoose.connect(uri);
+
+  console.log("Conectado a MongoDB:", mongoose.connection.name);
 }
 
 module.exports = conectarBaseDeDatos;
+
+
+
